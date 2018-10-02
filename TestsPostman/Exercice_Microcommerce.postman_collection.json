@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "f8165f8d-3382-4a88-9678-152abb1ce1c4",
+		"name": "Exercice_Microcommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9090/AdminProduits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60cfaebc-17b9-4568-864f-303da6fe21df",
+						"type": "text/javascript",
+						"exec": [
+							"var testPartie1 = {",
+							"    \"Product{id=1, nom='Ordinateur portable', prix=350}\": 230,",
+							"    \"Product{id=2, nom='Aspirateur Robot', prix=500}\": 300,",
+							"    \"Product{id=3, nom='Table de Ping Pong', prix=750}\": 350",
+							"};",
+							"",
+							"pm.test(\"Test Partie 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql(testPartie1);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9090/AdminProduits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"AdminProduits"
+					]
+				},
+				"description": "Partie 1"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/ProduitsTries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63a68798-f170-4aa8-802d-d22a08fe480e",
+						"type": "text/javascript",
+						"exec": [
+							"var testPartie2 = [",
+							"    {",
+							"        \"id\": 2,",
+							"        \"nom\": \"Aspirateur Robot\",",
+							"        \"prix\": 500,",
+							"        \"prixAchat\": 200",
+							"    },",
+							"    {",
+							"        \"id\": 1,",
+							"        \"nom\": \"Ordinateur portable\",",
+							"        \"prix\": 350,",
+							"        \"prixAchat\": 120",
+							"    },",
+							"    {",
+							"        \"id\": 3,",
+							"        \"nom\": \"Table de Ping Pong\",",
+							"        \"prix\": 750,",
+							"        \"prixAchat\": 400",
+							"    }",
+							"];",
+							"",
+							"pm.test(\"Test Partie 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql(testPartie2);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9090/ProduitsTries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"ProduitsTries"
+					]
+				},
+				"description": "Partie 2"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/Produits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc2364c6-7d29-4f84-90ec-2c1dc9517f0b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Test Partie 3\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nom\": \"Poney en bois\",\r\n  \"prix\": 0\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9090/Produits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"Produits"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
